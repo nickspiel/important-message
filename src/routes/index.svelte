@@ -4,18 +4,22 @@
 	import Form from './form.svelte';
 	import { onMount } from 'svelte';
 
+	let ready = false;
 	let content: string;
 	onMount(() => {
 		const urlParams = new URLSearchParams(window.location.search);
 		content = urlParams.get('content');
+		ready = true;
 	});
 </script>
 
 <div class="wrapper">
-	{#if content}
-		<Presentation {content} />
-	{:else}
-		<Form />
+	{#if ready}
+		{#if content}
+			<Presentation {content} />
+		{:else}
+			<Form />
+		{/if}
 	{/if}
 </div>
 
@@ -24,6 +28,7 @@
 		height: 100%;
 		min-height: 100%;
 		font-size: 3.5vw;
+		font-display: block;
 	}
 
 	:global(body) {
@@ -37,6 +42,7 @@
 		align-items: center;
 		font-family: 'Share Tech', sans-serif;
 		background-color: #eeeeee;
+		font-display: block;
 	}
 
 	:global(button) {

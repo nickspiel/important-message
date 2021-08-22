@@ -5,6 +5,7 @@
 
 	let activeSlide: number = -1;
 	let ready = false;
+	let clean = true;
 
 	const chime = new Audio('./an-important-announcement.mp3');
 	const slides = decodeURI(content).split('|');
@@ -12,6 +13,7 @@
 	const previous = () => activeSlide--;
 	const next = () => {
 		activeSlide++;
+		clean = false;
 		if (activeSlide === 0) {
 			chime.play();
 		}
@@ -45,6 +47,7 @@
 </script>
 
 <div class="wrapper">
+	<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
 	{#if ready}
 		{#each prepareSlides() as slide, slideNumber}
 			<div class="slide">
@@ -81,6 +84,18 @@
 		position: relative;
 	}
 
+	.instructions {
+		text-transform: uppercase;
+		color: #ddd;
+		transition: opacity 0.3s;
+	}
+	.show {
+		opacity: 1;
+	}
+
+	.hide {
+		opacity: 0;
+	}
 	.slide {
 		display: flex;
 		flex-direction: column;
@@ -111,8 +126,11 @@
 		background-color: #2b6ed2;
 		border-radius: 0.05em;
 		animation: slide-in 1s;
-		transition: transform 1s ease-in-out;
 		transform: translateX(100vw);
+	}
+
+	.ready {
+		transition: transform 1s ease-in-out;
 	}
 
 	.line:nth-child(1) .word {
