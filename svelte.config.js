@@ -12,9 +12,9 @@ const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#app',
-		adapter: netlify(),
-		ssr: false
+		adapter: netlify()
 	},
+	ssr: false
 };
 
 export default config;
