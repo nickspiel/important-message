@@ -122,6 +122,7 @@
 	@for $line from 0 through 1 {
 		@for $word from 0 through 10 {
 			.word-#{$line + $word} {
+				transition: transform 1s ease-in-out;
 				transition-delay: 0.05s + math.div($word + $line, 20);
 			}
 		}
@@ -131,6 +132,7 @@
 	}
 
 	.done {
+		transition: transform 1s ease-in-out;
 		transform: translateX(-100vw);
 	}
 
