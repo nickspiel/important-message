@@ -1,7 +1,7 @@
-<script lang="ts" context="module">
+<script lang="typescript">
 	import { onMount } from 'svelte';
 	let activeSlide: number = 0;
-	export let content;
+	export let content: string;
 	export const ssr = false;
 
 	const slides = decodeURI(content).split('|');

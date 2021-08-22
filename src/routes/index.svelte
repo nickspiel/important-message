@@ -1,10 +1,15 @@
-<script lang="ts" context="module">
+<script lang="ts">
 	export const ssr = false;
 	import Presentation from './presentation.svelte';
 	import Form from './form.svelte';
+	import { onMount } from 'svelte';
 
-	const urlParams = new URLSearchParams(window.location.search);
-	const content: string = urlParams.get('content');
+	let content: string;
+
+	onMount(() => {
+		const urlParams = new URLSearchParams(window.location.search);
+		content = urlParams.get('content');
+	});
 </script>
 
 <div class="wrapper">

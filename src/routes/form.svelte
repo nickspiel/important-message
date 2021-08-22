@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts">
 	export const ssr = false;
 	let input: string = '';
 	const update = () => {
