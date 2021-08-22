@@ -1,13 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let activeSlide: number = 0;
+
 	export let content: string;
-	export const ssr = false;
+
+	let activeSlide: number = -1;
+
+	const chime = new Audio('./an-important-announcement.mp3');
 
 	const slides = decodeURI(content).split('|');
 
 	const previous = () => activeSlide--;
-	const next = () => activeSlide++;
+	const next = () => {
+		activeSlide++;
+		if (activeSlide === 0) {
+			chime.play();
+		}
+	};
 
 	onMount(() => {
 		document.addEventListener('keydown', function (e) {
