@@ -1,2 +1,16 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts" context="module">
+	export const ssr = false;
+	import Presentation from './presentation.svelte';
+	import Form from './form.svelte';
+
+	const urlParams = new URLSearchParams(window.location.search);
+	const content: string = urlParams.get('content');
+</script>
+
+<div class="wrapper">
+	{#if content}
+		<Presentation {content} />
+	{:else}
+		<Form />
+	{/if}
+</div>

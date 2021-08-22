@@ -1,15 +1,18 @@
-import preprocess from 'svelte-preprocess';
+import { scss, typescript } from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
-
+	preprocess: [
+		scss({}),
+		typescript({})
+	],
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
-	}
+		target: '#app',
+		ssr: false
+	},
 };
 
 export default config;
