@@ -35,7 +35,7 @@
 
 	const prepareSlides = (items = slides): string[][][] => {
 		return items.map((sentence): string[][] => {
-			const words: string[] = sentence.split(' ');
+			const words: string[] = sentence.trim().split(' ');
 			const numberOfWords: number = words.length;
 			const midPoint: number = Math.ceil(numberOfWords / 2);
 			const firstRow: string[] = words.slice(0, midPoint);
