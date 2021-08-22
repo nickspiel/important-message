@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	let activeSlide: number = 0;
 	export let content;
+	export const ssr = false;
 
 	const slides = decodeURI(content).split('|');
 
