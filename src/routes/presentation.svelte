@@ -60,6 +60,7 @@
 <button on:click={next}>Next</button>
 
 <style lang="scss">
+	@use "sass:math";
 	@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Source+Sans+Pro:wght@600&display=swap');
 	:global(html) {
@@ -124,7 +125,7 @@
 	@for $line from 0 through 1 {
 		@for $word from 0 through 10 {
 			.word-#{$line + $word} {
-				transition-delay: 0.05s + (($word + $line) / 20);
+				transition-delay: 0.05s + math.div($word + $line, 20);
 			}
 		}
 	}
