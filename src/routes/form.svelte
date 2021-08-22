@@ -18,7 +18,7 @@
 
 <div class="wrapper">
 	<textarea bind:value={input} on:input={update} />
-	<button>Done</button>
+	<button>Donezo</button>
 </div>
 
 <style lang="scss">
