@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" context="module">
 	import { onMount } from 'svelte';
 	let activeSlide: number = 0;
 	export let content;
