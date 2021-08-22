@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Presentation from './presentation.svelte';
-
+	export const ssr = false;
 	let input: string = '';
 	const update = () => {
 		if (history.pushState) {
