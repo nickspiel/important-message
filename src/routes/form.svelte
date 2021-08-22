@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	let input: string = '';
-	let contentInput;
 
 	const update = () => {
+		const newLinesReplaced = input.replace(/\n/g, '|');
+		const encodedInput = encodeURIComponent(window.btoa(newLinesReplaced));
+
 		if (history.pushState) {
 			var newurl =
 				window.location.protocol +
 				'//' +
 				window.location.host +
 				window.location.pathname +
-				`?content=${input.replace(/\n/g, encodeURIComponent('|'))}`;
+				`?content=${encodedInput}`;
 			window.history.pushState({ path: newurl }, '', newurl);
 		}
 	};
@@ -20,7 +20,7 @@
 </script>
 
 <div class="wrapper">
-	<textarea use:focus bind:this={contentInput} bind:value={input} on:input={update} />
+	<textarea use:focus bind:value={input} on:input={update} />
 	<button on:click={() => location.reload()}>Present Deck</button>
 </div>
 

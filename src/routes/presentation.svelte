@@ -8,7 +8,7 @@
 	let clean = true;
 
 	const chime = new Audio('./an-important-announcement.mp3');
-	const slides = decodeURI(content).split('|');
+	const slides = decodeURI(window.atob(content)).split('|');
 
 	const previous = () => activeSlide--;
 	const next = () => {
