@@ -64,21 +64,6 @@
 	@use "sass:math";
 	@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Source+Sans+Pro:wght@600&display=swap');
-	:global(html) {
-		height: 100%;
-		min-height: 100%;
-		font-size: 3.5vw;
-	}
-	:global(body) {
-		height: 100%;
-		min-height: 100%;
-		font-size: 5vw;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-family: 'Share Tech', sans-serif;
-	}
-
 	.wrapper {
 		height: 100%;
 		min-height: 100%;
