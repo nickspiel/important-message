@@ -4,9 +4,9 @@
 	export let content: string;
 
 	let activeSlide: number = -1;
+	let ready = false;
 
 	const chime = new Audio('./an-important-announcement.mp3');
-
 	const slides = decodeURI(content).split('|');
 
 	const previous = () => activeSlide--;
@@ -18,6 +18,7 @@
 	};
 
 	onMount(() => {
+		ready = true;
 		document.addEventListener('keydown', function (e) {
 			switch (e.keyCode) {
 				case 37:
@@ -44,26 +45,28 @@
 </script>
 
 <div class="wrapper">
-	{#each prepareSlides() as slide, slideNumber}
-		<div class="slide">
-			{#each slide as line, lineNumber}
-				<div class="line">
-					{#each line as word, wordNumber}
-						<div
-							class={`
+	{#if ready}
+		{#each prepareSlides() as slide, slideNumber}
+			<div class="slide">
+				{#each slide as line, lineNumber}
+					<div class="line">
+						{#each line as word, wordNumber}
+							<div
+								class={`
 							word-${wordNumber + lineNumber}
 							word 
 							${activeSlide == slideNumber ? 'active' : ''} 
 							${activeSlide > slideNumber ? 'done' : ''}
 						`}
-						>
-							{word}
-						</div>
-					{/each}
-				</div>
-			{/each}
-		</div>
-	{/each}
+							>
+								{word}
+							</div>
+						{/each}
+					</div>
+				{/each}
+			</div>
+		{/each}
+	{/if}
 </div>
 
 <button on:click={next}>Next</button>
