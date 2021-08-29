@@ -1,4 +1,7 @@
 <script lang="ts">
+import Word from "./word.svelte";
+
+
 	let input: string = '';
 
 	const update = () => {
@@ -20,7 +23,13 @@
 </script>
 
 <div class="wrapper">
-	<textarea use:focus bind:value={input} on:input={update} />
+	<div class="header">
+		<div><Word isActive={true}>Important</Word></div>
+		<div class="inset"><Word isActive={true} variant={true}>Announcement</Word></div>
+	</div>
+	<textarea use:focus bind:value={input} on:input={update}
+		placeholder={`An important announcement from you\nEach line is a new slide`}
+		/>
 	<button on:click={() => location.reload()}>Present Deck</button>
 </div>
 
@@ -28,13 +37,20 @@
 	.wrapper {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-end;
-		align-items: flex-end;
+		justify-content: flex-start;
+		align-items: flex-start;
+		height: 100vh;
+	}
+	.header {
+		margin: 0.5rem 0;
+	}
+	.inset {
+		margin-left: 2rem;
 	}
 	textarea {
 		font-size: 2vw;
 		width: 95vw;
-		height: 95vh;
+		height: 50vh;
 		text-transform: uppercase;
 		white-space: break-spaces;
 		border: none;

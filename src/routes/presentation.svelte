@@ -1,35 +1,41 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import Word from './word.svelte';
 
 	export let content: string;
 
 	let activeSlide: number = -1;
 	let ready = false;
 	let clean = true;
+	let finished = false;
 
 	const chime = new Audio('./an-important-announcement.mp3');
 	const slides = decodeURI(window.atob(content)).split('|');
 
 	const previous = () => activeSlide--;
 	const next = () => {
-		activeSlide++;
 		clean = false;
-		if (activeSlide === 0) {
-			chime.play();
-		}
+		
+		if (finished) return;
+		
+		activeSlide++;
+		
+		if (activeSlide === 0) chime.play();
+		
+		finished = activeSlide >= slides.length;
 	};
 
 	onMount(() => {
 		ready = true;
+		const actions = {
+			ArrowLeft: previous,
+			ArrowRight: next,
+		}
+
 		document.addEventListener('keydown', function (e) {
-			switch (e.keyCode) {
-				case 37:
-					previous();
-					break;
-				case 39:
-					next();
-					break;
-			}
+			const action = actions[e.code];
+			
+			if (action) action();
 		});
 	});
 
@@ -47,23 +53,22 @@
 </script>
 
 <div class="wrapper">
-	<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
 	{#if ready}
+		<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
+		<a class={`finished ${finished ? 'show' : 'hide'}`} href="/">Make your own</a>
 		{#each prepareSlides() as slide, slideNumber}
 			<div class="slide">
 				{#each slide as line, lineNumber}
 					<div class="line">
 						{#each line as word, wordNumber}
-							<div
-								class={`
-							word-${wordNumber + lineNumber}
-							word 
-							${activeSlide == slideNumber ? 'active' : ''} 
-							${activeSlide > slideNumber ? 'done' : ''}
-						`}
+							<Word 
+								position={wordNumber + lineNumber}
+								isActive={activeSlide == slideNumber}
+								seen={activeSlide > slideNumber}
+								variant={lineNumber > 0}
 							>
 								{word}
-							</div>
+							</Word>
 						{/each}
 					</div>
 				{/each}
@@ -72,12 +77,12 @@
 	{/if}
 </div>
 
-<button on:click={next}>Next</button>
+<button class="next-button" on:click={next}>Next</button>
 
 <style lang="scss">
-	@use "sass:math";
 	@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Source+Sans+Pro:wght@600&display=swap');
+	
 	.wrapper {
 		height: 100%;
 		min-height: 100%;
@@ -89,10 +94,17 @@
 		color: #ddd;
 		transition: opacity 0.3s;
 	}
+	.finished {
+		position: relative;
+		transition: opacity 2s 0.5s;
+		text-transform: uppercase;
+		color: #2b6ed2;
+		opacity: 0;
+		z-index: 1;
+	}
 	.show {
 		opacity: 1;
 	}
-
 	.hide {
 		opacity: 0;
 	}
@@ -106,55 +118,16 @@
 		bottom: 0;
 		left: 0;
 	}
-
 	.line {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
 	}
-
-	.word {
-		flex-grow: 0;
-		display: inline-flex;
-		justify-content: center;
-		padding: 0.175em 0.25em 0.15em;
-		line-height: 1;
-		color: white;
-		text-transform: uppercase;
-		margin: 0.1em;
-		background-color: #2b6ed2;
-		border-radius: 0.05em;
-		animation: slide-in 1s;
-		transform: translateX(100vw);
-	}
-
 	.ready {
 		transition: transform 1s ease-in-out;
 	}
-
-	.line:nth-child(1) .word {
-		background-color: #0bacff;
-	}
-
-	@for $line from 0 through 1 {
-		@for $word from 0 through 10 {
-			.word-#{$line + $word} {
-				transition: transform 1s ease-in-out;
-				transition-delay: 0.05s + math.div($word + $line, 20);
-			}
-		}
-	}
-	.active {
-		transform: translateX(0);
-	}
-
-	.done {
-		transition: transform 1s ease-in-out;
-		transform: translateX(-100vw);
-	}
-
-	button {
+	.next-button {
 		position: fixed;
 		top: 0;
 		right: 0;
