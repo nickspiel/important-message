@@ -1,20 +1,10 @@
-# create-svelte
+# Important Announcement
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+Create presentations the in similar to the Victorian Governments coronavirus announcement messages.
 
-## Creating a project
+### [Create a presentation](https://important-message.netlify.app/)
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+Made with hackily and hastily while learning [Svelte](https://svelte.dev/).
 
 ## Developing
 
@@ -36,3 +26,7 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+## Deploy
+
+Deployed with Github actions to [Netlify](https://important-message.netlify.app/).
