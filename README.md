@@ -4,7 +4,7 @@ Send _"important"_ messages to your friends, family and colleagues in the of sty
 
 ### [Create a presentation 👨‍🎨](https://important-message.netlify.app/)
 
-![preview](./preview.png)
+![preview](./assets/logo.png)
 
 Made with hastily and hackily while learning [Svelte](https://svelte.dev/).
 

@@ -3,6 +3,9 @@
 	import Presentation from '../components/Presentation.svelte';
 	import Form from '../components/Form.svelte';
 	import { onMount } from 'svelte';
+	import logo from '../../assets/logo.png';
+	import faviconSmall from '../../assets/favicon.ico';
+	import appleIcon from '../../assets/apple-touch-icon.png';
 	
 	let ready = false;
 	let content: string;
@@ -12,6 +15,12 @@
 		ready = true;
 	});
 </script>
+<svelte:head>
+	<meta property="og:image" content={logo} />
+	<link rel="icon" href={faviconSmall} sizes="any">
+	<link rel="apple-touch-icon" href={appleIcon}><!-- 180×180 -->
+	<link rel="manifest" href="/manifest.webmanifest">
+</svelte:head>
 
 <div class="wrapper">
 	{#if ready}
