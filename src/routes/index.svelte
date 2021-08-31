@@ -19,7 +19,6 @@
 	<meta property="og:image" content={logo} />
 	<link rel="icon" href={faviconSmall} sizes="any">
 	<link rel="apple-touch-icon" href={appleIcon}><!-- 180×180 -->
-	<link rel="manifest" href="/manifest.webmanifest">
 </svelte:head>
 
 <div class="wrapper">
