@@ -1,20 +1,23 @@
 <script lang="ts">
-import Word from "./word.svelte";
-
-
+	import Word from "./Word.svelte";
+	import Button from "./Button.svelte";
+	
 	let input: string = '';
 
-	const update = () => {
+	const encodedContent = (content) => {
 		const newLinesReplaced = input.replace(/\n/g, '|');
-		const encodedInput = encodeURIComponent(window.btoa(newLinesReplaced));
 
+		return encodeURIComponent(window.btoa(newLinesReplaced));
+	}
+
+	const update = () => {
 		if (history.pushState) {
 			var newurl =
 				window.location.protocol +
 				'//' +
 				window.location.host +
 				window.location.pathname +
-				`?content=${encodedInput}`;
+				`?content=${encodedContent(input)}`;
 			window.history.pushState({ path: newurl }, '', newurl);
 		}
 	};
@@ -23,6 +26,7 @@ import Word from "./word.svelte";
 </script>
 
 <div class="wrapper">
+	<a href="https://github.com/nickspiel/important-announcement"><img class="github-logo" src="../../static/github.svg" alt="github" /></a>
 	<div class="header">
 		<div><Word isActive={true}>Important</Word></div>
 		<div class="inset"><Word isActive={true} variant={true}>Announcement</Word></div>
@@ -30,7 +34,7 @@ import Word from "./word.svelte";
 	<textarea use:focus bind:value={input} on:input={update}
 		placeholder={`An important announcement from you\nEach line is a new slide`}
 		/>
-	<button on:click={() => location.reload()}>Present Deck</button>
+	<Button click={() => { location.reload() }} className="">Present Deck</Button>
 </div>
 
 <style lang="scss">
@@ -41,36 +45,58 @@ import Word from "./word.svelte";
 		align-items: flex-start;
 		height: 100vh;
 	}
+
+	.github-logo {
+		display: none;
+		position: fixed;
+		width: 3vw;
+		height: 3vw;
+		min-width: 1rem;
+		min-height: 1rem;
+		bottom: 1rem;
+		left: 1rem;
+		opacity: 0.2;
+		transition: opacity 0.3s;
+
+		@media (min-width: 600px) {
+			display: block;
+		}
+
+		&:hover {
+			opacity: 0.5;
+		}
+	}
+
 	.header {
 		margin: 0.5rem 0;
+		font-size: 1.75rem;
 	}
+
 	.inset {
 		margin-left: 2rem;
 	}
+
 	textarea {
-		font-size: 2vw;
+		flex-grow: 1;
+		font-size: 5vw;
 		width: 95vw;
-		height: 50vh;
 		text-transform: uppercase;
 		white-space: break-spaces;
 		border: none;
 		box-sizing: border-box;
-		padding: 3vw;
-	}
-	button {
-		position: fixed;
-		bottom: 1vw;
-		right: 1vw;
-		text-transform: uppercase;
-		font-size: 0.5rem;
-		background-color: red;
-		color: white;
-		border-radius: 0.05em;
-		border: none;
-		padding: 0.5em 0.75em;
-		background-color: #2b6ed2;
-		&:hover {
-			background-color: #0bacff;
+		padding: 1em;
+		line-height: 1.5;
+
+		@media (min-height: 600px) {
+			height: 60vh;
+		}
+
+		@media (min-width: 600px) {
+			font-size: 3vw;
+		}
+
+		@media (min-width: 800px) {
+			font-size: 2vw;
 		}
 	}
 </style>

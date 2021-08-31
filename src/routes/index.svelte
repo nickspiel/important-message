@@ -1,9 +1,9 @@
 <script lang="ts">
 	export const ssr = false;
-	import Presentation from './presentation.svelte';
-	import Form from './form.svelte';
+	import Presentation from '../components/Presentation.svelte';
+	import Form from '../components/Form.svelte';
 	import { onMount } from 'svelte';
-
+	
 	let ready = false;
 	let content: string;
 	onMount(() => {
@@ -27,8 +27,15 @@
 	:global(html) {
 		height: 100%;
 		min-height: 100%;
-		font-size: 3.5vw;
+		font-size: 1rem;
 		font-display: block;
+		@media (min-width: 600px) {
+			font-size: 3.5vw;
+		}
+
+		@media (min-width: 800px) {
+			font-size: 2vw;
+		}
 	}
 
 	:global(body) {

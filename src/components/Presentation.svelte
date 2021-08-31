@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Word from './word.svelte';
+	import Word from './Word.svelte';
+	import Button from "./Button.svelte"
 
 	export let content: string;
 
@@ -55,7 +56,7 @@
 <div class="wrapper">
 	{#if ready}
 		<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
-		<a class={`finished ${finished ? 'show' : 'hide'}`} href="/">Make your own</a>
+		{#if finished }<Button click={() => location.replace('/')}>Make your own</Button>{/if}
 		{#each prepareSlides() as slide, slideNumber}
 			<div class="slide">
 				{#each slide as line, lineNumber}
@@ -87,6 +88,7 @@
 		height: 100%;
 		min-height: 100%;
 		position: relative;
+		text-align: center;
 	}
 
 	.instructions {

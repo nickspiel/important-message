@@ -1,8 +1,8 @@
 <script lang="ts">
-  export let position: number;
-  export let isActive: boolean;
-  export let seen: boolean;
-  export let variant: boolean;
+  export let position: number = 0;
+  export let isActive: boolean = false;
+  export let seen: boolean = false;
+  export let variant: boolean = false;
 </script>
 
 <div
@@ -31,6 +31,7 @@
 		border-radius: 0.02em;
 		animation: slide-in 1s;
 		transform: translateX(100vw);
+    
 
     @for $line from 0 through 1 {
       @for $word from 0 through 10 {
