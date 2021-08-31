@@ -1,6 +1,6 @@
 # Important Announcement
 
-Create presentations the in similar to the Victorian Governments coronavirus announcement messages.
+Send _"important"_ messages to your friends, family and colleagues in the of style the Victorian Governments coronavirus announcement messages.
 
 ### [Create a presentation](https://important-message.netlify.app/)
 
@@ -8,7 +8,7 @@ Made with hackily and hastily while learning [Svelte](https://svelte.dev/).
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or `npm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev
@@ -30,3 +30,10 @@ npm run build
 ## Deploy
 
 Deployed with Github actions to [Netlify](https://important-message.netlify.app/).
+
+## Disclaimer
+
+It feels stupid saying it but to be 100% clear this is not endorsed by the Victorian Government in any way. Be cool.
+
+_I trust all Victorians will do the right thing._
+Daniel Andrews 2020-2021
