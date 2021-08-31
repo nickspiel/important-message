@@ -2,6 +2,7 @@
 	import Word from "./Word.svelte";
 	import Button from "./Button.svelte";
 	import { onMount } from 'svelte';
+	import githubLogo from "../../static/github.svg";
 
 	const STORAGE_KEY: string = "importantContent";
 	
@@ -39,7 +40,6 @@
 </script>
 
 <div class="wrapper">
-	<a href="https://github.com/nickspiel/important-announcement"><img class="github-logo" src="../../static/github.svg" alt="github" /></a>
 	<div class="header">
 		<div><Word isActive={true}>Important</Word></div>
 		<div class="inset"><Word isActive={true} variant={true}>Announcement</Word></div>
@@ -48,6 +48,7 @@
 		placeholder={`An important announcement from you\nEach line is a new slide`}
 		/>
 	<Button disabled={!input.length} click={presentSlides} className="">Present Deck</Button>
+	<a href="https://github.com/nickspiel/important-announcement"><img class="github-logo" src={githubLogo} alt="github" /></a>
 </div>
 
 <style lang="scss">
