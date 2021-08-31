@@ -1,8 +1,8 @@
-# Important Announcement
+# Important Announcement 📣📣📣
 
 Send _"important"_ messages to your friends, family and colleagues in the of style the Victorian Government's coronavirus announcement messages.
 
-### [Create a presentation](https://important-message.netlify.app/)
+### [Create a presentation 👨‍🎨](https://important-message.netlify.app/)
 
 ![preview](./preview.png)
 
