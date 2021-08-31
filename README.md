@@ -6,7 +6,7 @@ Send _"important"_ messages to your friends, family and colleagues in the of sty
 
 ![preview](./preview.png)
 
-Made with hackily and hastily while learning [Svelte](https://svelte.dev/).
+Made with hastily and hackily while learning [Svelte](https://svelte.dev/).
 
 ## Developing
 
