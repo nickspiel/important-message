@@ -50,6 +50,7 @@
 		font-family: 'Share Tech', sans-serif;
 		background-color: #eeeeee;
 		font-display: block;
+		color: #555;
 	}
 
 	:global(button) {

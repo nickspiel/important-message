@@ -1,12 +1,13 @@
 <script lang="ts">
-  export let className: string = "";
+	import { fade } from 'svelte/transition';
+  
+	export let className: string = "";
 	export let click: () => void;
 	export let disabled: boolean = false;
-	
-	import { fade } from 'svelte/transition';
+	export let delay: number = 1000; 
 </script>
 
-<button disabled={disabled} type="button" in:fade={{ delay: 1000 }} on:click={click} class={`button ${className}`}><slot /></button>
+<button disabled={disabled} type="button" in:fade={{ delay }} on:click={click} class={`button ${className}`}><slot /></button>
 
 <style lang="scss">
   .button {

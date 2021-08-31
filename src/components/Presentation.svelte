@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import Word from './Word.svelte';
 	import Button from "./Button.svelte";
 
@@ -54,7 +55,8 @@
 <div class="wrapper">
 	{#if ready}
 		<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
-		{#if finished }<Button click={() => location.replace('/')}>Make your own</Button>{/if}
+		{#if finished }<p in:fade={{ delay: 1000 }} class="disclaimer"><b>Not</b> Authorised by the Victorian Government Melbourne</p>{/if}	
+		{#if finished }<Button delay={3000} click={() => location.replace('/')}>Make your own</Button>{/if}
 		{#each prepareSlides() as slide, slideNumber}
 			<div class="slide">
 				{#each slide as line, lineNumber}
@@ -101,6 +103,9 @@
 		color: #2b6ed2;
 		opacity: 0;
 		z-index: 1;
+	}
+	.disclaimer {
+		font-size: 1rem;
 	}
 	.show {
 		opacity: 1;
