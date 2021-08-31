@@ -1,9 +1,12 @@
 <script lang="ts">
   export let className: string = "";
 	export let click: () => void;
+	export let disabled: boolean = false;
+	
+	import { fade } from 'svelte/transition';
 </script>
 
-<button on:click={click} class={`button ${className}`}><slot /></button>
+<button disabled={disabled} type="button" in:fade={{ delay: 1000 }} on:click={click} class={`button ${className}`}><slot /></button>
 
 <style lang="scss">
   .button {
@@ -17,11 +20,16 @@
 		padding: 0.5em 0.75em;
 		background-color: #555;
 		font-size: 1.5rem;
-		transition: background-color 0.3s;
+		transition: background-color 0.3s, opacity 0.3s;
 		padding-right: 2rem;
 		position: relative;
     z-index: 1;
 		outline: none;
+		&:disabled {
+			cursor: not-allowed;
+			pointer-events: none;
+			opacity: 0.2;
+		}
 
 		@media (min-width: 600px) {
 			width: auto;

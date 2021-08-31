@@ -5,7 +5,7 @@
 	let input: string = '';
 
 	const encodedContent = (content) => {
-		const newLinesReplaced = input.replace(/\n/g, '|');
+		const newLinesReplaced = content.replace(/\n/g, '|');
 
 		return encodeURIComponent(window.btoa(newLinesReplaced));
 	}
@@ -34,7 +34,7 @@
 	<textarea use:focus bind:value={input} on:input={update}
 		placeholder={`An important announcement from you\nEach line is a new slide`}
 		/>
-	<Button click={() => { location.reload() }} className="">Present Deck</Button>
+	<Button disabled={!input.length} click={() => { location.reload() }} className="">Present Deck</Button>
 </div>
 
 <style lang="scss">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Word from './Word.svelte';
-	import Button from "./Button.svelte"
+	import Button from "./Button.svelte";
 
 	export let content: string;
 
@@ -9,10 +9,8 @@
 	let ready = false;
 	let clean = true;
 	let finished = false;
-
 	const chime = new Audio('./an-important-announcement.mp3');
 	const slides = decodeURI(window.atob(content)).split('|');
-
 	const previous = () => activeSlide--;
 	const next = () => {
 		clean = false;
@@ -139,5 +137,9 @@
 		background: none;
 		border: none;
 		opacity: 0;
+	}
+
+	.button {
+		animation: fadeIn 1s;
 	}
 </style>
