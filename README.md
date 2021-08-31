@@ -37,5 +37,6 @@ Deployed with Github actions to [Netlify](https://important-message.netlify.app/
 
 It feels stupid saying it but to be 100% clear this is not endorsed by the Victorian Government in any way. Be cool.
 
-_I trust all Victorians will do the right thing._
-Daniel Andrews 2020-2021
+> I trust all Victorians will do the right thing.
+
+_Daniel Andrews, circa 2020-2021_
