@@ -10,7 +10,7 @@
 	let clean = true;
 	let finished = false;
 	const chime = new Audio('./an-important-announcement.mp3');
-	const slides = decodeURI(window.atob(content)).split('|');
+	const slides = window.atob(decodeURIComponent(content)).split('|');
 	const previous = () => activeSlide--;
 	const next = () => {
 		clean = false;

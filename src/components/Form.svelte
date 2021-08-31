@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Word from "./Word.svelte";
 	import Button from "./Button.svelte";
+	import { onMount } from 'svelte';
+
+	const STORAGE_KEY: string = "importantContent";
 	
 	let input: string = '';
 
@@ -8,6 +11,11 @@
 		const newLinesReplaced = content.replace(/\n/g, '|');
 
 		return encodeURIComponent(window.btoa(newLinesReplaced));
+	}
+
+	const presentSlides = () => { 
+		localStorage.setItem(STORAGE_KEY, input);
+		location.reload()
 	}
 
 	const update = () => {
@@ -23,6 +31,11 @@
 	};
 
 	const focus = (element) => element.focus();
+
+	onMount(() => {
+		const importantContent = localStorage.getItem(STORAGE_KEY) || '';
+		input = importantContent;
+	});
 </script>
 
 <div class="wrapper">
@@ -34,7 +47,7 @@
 	<textarea use:focus bind:value={input} on:input={update}
 		placeholder={`An important announcement from you\nEach line is a new slide`}
 		/>
-	<Button disabled={!input.length} click={() => { location.reload() }} className="">Present Deck</Button>
+	<Button disabled={!input.length} click={presentSlides} className="">Present Deck</Button>
 </div>
 
 <style lang="scss">
