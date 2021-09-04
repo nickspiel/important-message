@@ -16,6 +16,8 @@
 	});
 </script>
 <svelte:head>
+	<title>An Important Message</title>
+	<meta name="description" content={`Send "important" messages to your friends, family and colleagues in the of style the Victorian Government's coronavirus messages.`}/>
 	<meta property="og:image" content={logo} />
 	<link rel="icon" href={faviconSmall} sizes="any">
 	<link rel="apple-touch-icon" href={appleIcon}><!-- 180×180 -->
