@@ -42,11 +42,11 @@
 <div class="wrapper">
 	<div class="header">
 		<div><Word isActive={true}>Important</Word></div>
-		<div class="inset"><Word isActive={true} variant={true}>Message</Word></div>
+		<div class="inset"><Word isActive={true} variant={true}>Message</Word></div>            
 	</div>
 	<textarea use:focus bind:value={input} on:input={update}
 		placeholder={`An important message from you\nEach line is a new slide`} />
-	<Button disabled={!input.length} click={presentSlides} className="">Present Deck</Button>
+	<Button disabled={!input.length} click={presentSlides} className="">Present Message</Button>
 	<a href="https://github.com/nickspiel/important-message"><img class="github-logo" src={githubLogo} alt="github" /></a>
 </div>
 
@@ -56,7 +56,7 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
-		height: 100vh;
+		height: 100%;
 	}
 
 	.github-logo {
