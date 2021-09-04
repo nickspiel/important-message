@@ -86,7 +86,7 @@
 	}
 
 	.inset {
-		margin-left: 2.5rem;
+		margin-left: 3.5rem;
 	}
 
 	textarea {
