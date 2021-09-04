@@ -65,4 +65,8 @@
 		font-family: 'Share Tech', sans-serif;
 		cursor: pointer;
 	}
+
+	.wrapper {
+		width: 100%;
+	}
 </style>

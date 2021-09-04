@@ -21,11 +21,11 @@
 		padding: 0.5em 0.75em;
 		background-color: #555;
 		font-size: 1.5rem;
-		transition: background-color 0.3s, opacity 0.3s;
-		padding-right: 2rem;
+		transition: background-color 0.3s, opacity 0.3s, box-shadow 0.3s, transform 0.3s;
 		position: relative;
     z-index: 1;
 		outline: none;
+		box-shadow: 0.1em 0.1em rgba(black, 0.5);
 		&:disabled {
 			cursor: not-allowed;
 			pointer-events: none;
@@ -39,19 +39,14 @@
 			margin-top: 0.5rem;
 		}
 
-		&::after {
-			content: "\226B";
-			position: absolute;
-			right: 0.5em;
-			transition: transform 0.3s;
-			transform: translateX(-0.2em);
-		}
-
 		&:hover {
 			background-color: #333;
-			&::after {
-				transform: translateX(0em);
-			}
+			box-shadow: 0.1em 0.1em #2b6ed2;
+		}
+
+		&:active {
+			box-shadow: 0em 0em rgba(black, 0.5);
+			transform: translate(0.1em, 0.1em);
 		}
 	}
 </style>

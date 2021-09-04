@@ -101,6 +101,12 @@
 		padding: 1em;
 		line-height: 1.5;
 
+		&:focus {
+			outline: none;
+			border: solid 1px #2b6ed2;
+			box-shadow: 0.15em 0.15em #2b6ed2;
+		}
+
 		@media (min-height: 600px) {
 			height: 60vh;
 		}

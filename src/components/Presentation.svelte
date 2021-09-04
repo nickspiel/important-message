@@ -10,6 +10,7 @@
 	let ready = false;
 	let clean = true;
 	let finished = false;
+	let copied = false;
 	const chime = new Audio('./an-important-announcement.mp3');
 	const slides = window.atob(decodeURIComponent(content)).split('|');
 	const previous = () => activeSlide--;
@@ -55,8 +56,6 @@
 <div class="wrapper">
 	{#if ready}
 		<p class={`instructions ${clean ? 'show' : 'hide'}`}>Click, tap or ➡</p>
-		{#if finished }<p in:fade={{ delay: 1000 }} class="disclaimer"><b>Not</b> Authorised by the Victorian Government Melbourne</p>{/if}	
-		{#if finished }<Button delay={3000} click={() => location.replace('/')}>Make your own</Button>{/if}
 		{#each prepareSlides() as slide, slideNumber}
 			<div class="slide">
 				{#each slide as line, lineNumber}
@@ -78,7 +77,29 @@
 	{/if}
 </div>
 
+{#if finished }
+<div class="final">
+	<p in:fade={{ delay: 1000 }} class="disclaimer"><b>Not</b> Authorised by the Victorian Government Melbourne</p>
+	<div class="actions">
+		<Button delay={2000} click={() => location.replace('/')}>Make your own</Button>
+		<Button delay={2500} click={() => {
+			if (!navigator.canShare) {
+				navigator.clipboard.writeText(window.location.href);
+				copied = true;
+			} else {
+				navigator.share({
+				url: window.location.href,
+				title: "An important message"
+			});
+			}
+		}}>Share</Button>
+	</div>
+	<p class={`share ${copied && "copied"}`}>Share link has been copied to clipboard.</p>
+</div>
+{/if}
+{#if !finished }
 <button class="next-button" on:click={next}>Next</button>
+{/if}
 
 <style lang="scss">
 	@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
@@ -146,5 +167,22 @@
 
 	.button {
 		animation: fadeIn 1s;
+	}
+
+	.final {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.share {
+		font-size: 1rem;
+		display: block;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.copied {
+		opacity: 1;
 	}
 </style>
