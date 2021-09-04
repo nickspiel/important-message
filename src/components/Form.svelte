@@ -42,13 +42,13 @@
 <div class="wrapper">
 	<div class="header">
 		<div><Word isActive={true}>Important</Word></div>
-		<div class="inset"><Word isActive={true} variant={true}>Announcement</Word></div>
+		<div class="inset"><Word isActive={true} variant={true}>Message</Word></div>
 	</div>
 	<textarea use:focus bind:value={input} on:input={update}
-		placeholder={`An important announcement from you\nEach line is a new slide`}
+		placeholder={`An important message from you\nEach line is a new slide`}
 		/>
 	<Button disabled={!input.length} click={presentSlides} className="">Present Deck</Button>
-	<a href="https://github.com/nickspiel/important-announcement"><img class="github-logo" src={githubLogo} alt="github" /></a>
+	<a href="https://github.com/nickspiel/important-message"><img class="github-logo" src={githubLogo} alt="github" /></a>
 </div>
 
 <style lang="scss">
@@ -87,7 +87,7 @@
 	}
 
 	.inset {
-		margin-left: 2rem;
+		margin-left: 2.5rem;
 	}
 
 	textarea {
