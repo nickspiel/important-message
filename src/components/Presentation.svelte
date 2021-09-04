@@ -11,7 +11,7 @@
 	let clean = true;
 	let finished = false;
 	let copied = false;
-	const chime = new Audio('./an-important-announcement.mp3');
+	const chime = new Audio('./important.mp3');
 	const slides = window.atob(decodeURIComponent(content)).split('|');
 	const previous = () => activeSlide--;
 	const next = () => {
